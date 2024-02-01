@@ -1,0 +1,25 @@
+name: Try IPv6
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  push:
+  workflow_dispatch:
+
+jobs:
+  test:
+    strategy:
+      max-parallel: 1
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: 'master'
+      - uses: cachix/install-nix-action@v22
+        with:
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
+          # explicitly enable sandbox
+          extra_nix_config: sandbox = true
+      - run: "curl https://jit6.mkg20001.io | sh -"
+      - run: ping -c1 -w1 ipv6.google.com
+      - run: sleep 10
