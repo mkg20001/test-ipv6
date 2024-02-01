@@ -20,6 +20,6 @@ jobs:
           github_access_token: ${{ secrets.GITHUB_TOKEN }}
           # explicitly enable sandbox
           extra_nix_config: sandbox = true
-      - run: "curl https://jit6.mkg20001.io | sh -"
+      - run: "curl https://jit6.mkg20001.io | bash -"
       - run: ping -c1 -w1 ipv6.google.com
       - run: sleep 10
