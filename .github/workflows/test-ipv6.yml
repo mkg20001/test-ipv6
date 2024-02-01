@@ -22,4 +22,5 @@ jobs:
           extra_nix_config: sandbox = true
       - run: "curl https://jit6.mkg20001.io | env JIT6_TOKEN=${{ secrets.JIT6_TOKEN }} bash -"
       - run: ping -c1 -w1 ipv6.google.com
+      - run: curl -v ipv6.myip.wtf/json
       - run: sleep 10
